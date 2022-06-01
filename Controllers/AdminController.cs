@@ -5,7 +5,7 @@ namespace WebProject.Controllers
 {
     public class AdminController : Controller
     {
-        private readonly UserDBContext _db;
+        private UserDBContext _db;
         public AdminController (UserDBContext db)
         {
             _db = db;
@@ -18,7 +18,23 @@ namespace WebProject.Controllers
         }
         public IActionResult Edit(int? Id)
         {
-            return View(Id);
+            var obj =_db.Users.Find(Id);
+            return View(obj);
+        } 
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(WPUser obj)
+        {   
+            if (ModelState.IsValid)
+            {
+                _db.Users.Update(obj);
+                _db.Update();
+                return RedirectToAction("Index");
+            }
+            return View(obj);
+
         }
 
 
