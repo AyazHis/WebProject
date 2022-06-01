@@ -37,7 +37,7 @@
       <td>@item.City</td>
       <td>@item.Street</td>
       <td>@item.House</td>
-      <td><button type="button" class="btn btn-outline-success btn-sm">Редактировать</button>
+      <td><a asp-controller="Admin" asp-action="Edit" asp-route-Id="@item.Id" class="btn btn-outline-success btn-sm">Редактировать</a>
 </td>
       </tr>
       }

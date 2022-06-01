@@ -16,10 +16,9 @@ namespace WebProject.Controllers
             IEnumerable<WPUser> users = _db.Users;
             return View(users);
         }
-        public IActionResult Edit()
+        public IActionResult Edit(int? Id)
         {
-            IEnumerable<WPUser> users = _db.Users;
-            return View(users);
+            return View(Id);
         }
 
 
