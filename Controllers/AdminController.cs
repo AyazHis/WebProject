@@ -16,27 +16,33 @@ namespace WebProject.Controllers
             IEnumerable<WPUser> users = _db.Users;
             return View(users);
         }
-        public IActionResult Edit(int? Id)
+        public IActionResult Edit(string? Id)
         {
+           if (String.IsNullOrEmpty(Id))
+            {
+                return NotFound();
+            }
             var obj =_db.Users.Find(Id);
+            if(obj == null)
+            {
+                return NotFound();
+            }
             return View(obj);
-        } 
-
+        }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Edit(WPUser obj)
-        {   
+        {
             if (ModelState.IsValid)
             {
                 _db.Users.Update(obj);
-                _db.Update();
+                _db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(obj);
 
         }
-
-
+       
     }
 }

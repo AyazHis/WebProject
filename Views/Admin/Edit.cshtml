@@ -1,48 +1,92 @@
 ﻿@model WebProject.Areas.Identity.Data.WPUser
 
-
-        <form method="post" asp-action="Edit" class="row g-3">
-            <div class="col-md-6">
-                <label class="form-label">Email</label>
-                <input class="form-control"asp-for="Email" />
-
-            </div>
-            <div class="col-md-6">
-                <label for="inputPassword4" class="form-label">Password</label>
-                <input type="password" class="form-control" id="inputPassword4">
-            </div>
-            <div class="col-12">
-                <label for="inputAddress" class="form-label">Address</label>
-                <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-            </div>
-            <div class="col-12">
-                <label for="inputAddress2" class="form-label">Address 2</label>
-                <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
-            </div>
-            <div class="col-md-6">
-                <label for="inputCity" class="form-label">City</label>
-                <input type="text" class="form-control" id="inputCity">
-            </div>
-            <div class="col-md-4">
-                <label for="inputState" class="form-label">State</label>
-                    <select id="inputState" class="form-select">
-                    <option selected>Choose...</option>
-                    <option>...</option>
-                    </select>
-            </div>
-            <div class="col-md-2">
-                <label for="inputZip" class="form-label">Zip</label>
-                <input type="text" class="form-control" id="inputZip">
-            </div>
-            <div class="col-12">
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="gridCheck">
-                <label class="form-check-label" for="gridCheck">
-                    Check me out
-                </label>
-            </div>
-        </div>
-        <div class="col-12">
-            <button type="submit" class="btn btn-primary">Sign in</button>
-        </div>
-    </form>
+ <h3>ПРивет</h3>
+ <div>
+  <form class="row g-3" method = "post" asp-action = "Edit">
+  <div class="col-md-6">
+    <label class="form-label" asp-for="FirstName">Имя</label>
+     @if (String.IsNullOrEmpty(Model.FirstName))
+            {
+                <input class="form-control" placeholder="Ввведите имя" asp-for = "FirstName"/>
+            }
+            else
+            {
+                <input class="form-control" placeholder="@Model.FirstName" asp-for = "FirstName"/>
+            }
+  </div>
+  <div class="col-md-6">
+    <label class="form-label" asp-for = "LastName">Фамилия</label>
+     @if (String.IsNullOrEmpty(Model.LastName))
+            {
+                <input class="form-control" placeholder="Ввведите имя" asp-for = "LastName"/>
+            }
+            else
+            {
+                <input class="form-control" placeholder="@Model.LastName" asp-for = "LastName"/>
+            }
+  </div><div class="col-md-6">
+    <label class="form-label" asp-for="PhoneNumber">Номер телефона</label>
+     @if (String.IsNullOrEmpty(Model.Street))
+            {
+                <input class="form-control" placeholder="Ввведите номер телефона" asp-for = "PhoneNumber"/>
+            }
+            else
+            {
+                <input class="form-control" placeholder="@Model.Street" asp-for = "PhoneNumber"/>
+            }
+  </div>
+  <div class="col-md-6">
+    <label class="form-label" asp-for = "Email"></label>
+    <input class="form-control" asp-for = "Email" placeholder="@Model.Email"/>
+  </div>
+  <div class="col-12">
+    <label class="form-label" asp-for = "Street">Адрес</label>
+            @if (String.IsNullOrEmpty(Model.Street))
+            {
+                <input class="form-control" placeholder="Ввведите название улицы" asp-for = "Street"/>
+            }
+            else
+            {
+                <input class="form-control" placeholder="@Model.Street" asp-for = "Street"/>
+            }
+   </div>
+  <div class="col-md-2">
+    <label class="form-label">Дом</label>
+    <input class="form-control" asp-for ="House">
+  </div>
+  <div class="col-md-4">
+    <label class="form-label">Город</label>
+    <input class="form-control" asp-for ="City">
+  </div>
+  <div class="col-md-3">
+    <label class="form-label">Индекс</label>
+    <input class="form-control" asp-for = "PostIndex">
+  </div>
+  <div class="col-md-3">
+    <label class="form-label">Выбери меня</label>
+    <select class="form-select">
+      <option selected>Choose...</option>
+      <option>...</option>
+    </select>
+  </div>
+  <div class="col-md-3">
+    <div class="form-check">
+      <input class="form-check-input" asp-for="PhoneNumberConfirmed">
+      <label class="form-check-label" asp-for = "PhoneNumberConfirmed">
+       
+      </label>
+    </div>
+</div>
+    <div class="col-md-2">
+    <div class="form-check">
+      <input class="form-check-input" asp-for="EmailConfirmed">
+      <label class="form-check-label" asp-for = "EmailConfirmed">
+       
+      </label>
+    </div>
+  </div>
+  <div class="col-12">
+    <button type="submit" class="btn btn-success" value="Edit">Редактировать</button>
+  </div>
+</form>
+</div>
