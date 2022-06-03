@@ -3,6 +3,7 @@
  <h3>ПРивет</h3>
  <div>
   <form class="row g-3" method = "post" asp-action = "Edit">
+  <input asp-for ="Id" />
   <div class="col-md-6">
     <label class="form-label" asp-for="FirstName">Имя</label>
      @if (String.IsNullOrEmpty(Model.FirstName))
@@ -86,7 +87,11 @@
     </div>
   </div>
   <div class="col-12">
-    <button type="submit" class="btn btn-success" value="Edit">Редактировать</button>
+    <button type="submit" class="btn btn-success" value="Edit" asp-action = "Edit">Редактировать</button>
   </div>
 </form>
 </div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

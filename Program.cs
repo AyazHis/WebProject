@@ -1,8 +1,14 @@
-using Microsoft.AspNetCore.Identity;
+ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using WebProject.Areas.Identity.Data;
+using WebProject.Blogging;
+
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("UserDBContextConnection") ?? throw new InvalidOperationException("Connection string 'UserDBContextConnection' not found.");
+var connectionString1 = builder.Configuration.GetConnectionString("BlogContextConnection") ?? throw new InvalidOperationException("Connection string 'UserDBContextConnection' not found.");
+
+builder.Services.AddDbContext<BlogDBContext>(options =>
+    options.UseSqlServer(connectionString1));;
 
 builder.Services.AddDbContext<UserDBContext>(options =>
     options.UseSqlServer(connectionString));;
@@ -10,6 +16,7 @@ builder.Services.AddDbContext<UserDBContext>(options =>
 builder.Services.AddDefaultIdentity<WPUser>(options => options.SignIn.RequireConfirmedAccount = false)
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<UserDBContext>();;
+
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
