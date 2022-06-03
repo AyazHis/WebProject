@@ -1,0 +1,39 @@
+﻿@model WebProject.Blogging.Models.Blog
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Blog</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+               <div class="form-group">
+                <label asp-for="BlogTitle" class="form-label mt-4">Example textarea</label>
+
+                <textarea class="form-control" rows="3" input asp-for=BlogTitle></textarea>
+            </div>
+            <div class="form-group">
+                  <label for="formFile" class="form-label">Default file input example</label>
+                   <input class="form-control" asp-for="BlogPhoto" type="file" id="formFile">
+            </div>
+            <div class="form-group">
+                <label asp-for="CreateDate" class="control-label"></label>
+                <input asp-for="CreateDate" class="form-control" />
+                <span asp-validation-for="CreateDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+                <a asp-controller="Blog" asp-action="Index" class="btn btn-warning">назад</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
